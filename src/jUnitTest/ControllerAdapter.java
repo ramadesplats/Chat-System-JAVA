@@ -39,7 +39,8 @@ public class ControllerAdapter implements ControllerAdapterInterface {
 	public void disconnection() {
 	  this.controller.udps.sendBye(this.controller.modele.getLocalUser().getUsername(), "All");
   	  this.controller.cleanUI();
-  	  vue.setUIDisconnected();
+  	  this.controller.modele.getRemoteUsers().clear();
+  	  this.vue.setUIDisconnected();
   	  File dir = new File(System.getProperty("user.dir"));
   	  for(File file: dir.listFiles()){ 
   		    if (!file.isDirectory()) {
@@ -52,10 +53,7 @@ public class ControllerAdapter implements ControllerAdapterInterface {
   	  this.controller.timer_check.stop();
   	  this.controller.udps.closeSocket();
   	  this.controller.udpr.closeSocket();
-  	  this.controller.udpr.interruption();//interrupt dans le udpr
-  	  //To call Garbage collector, launch finalize functions() and close socket
-  	  //udpr=null; 
-  	  //udps=null;
+  	  this.controller.udpr.interruption();
   	  Thread.currentThread().interrupt();
 	}
 	

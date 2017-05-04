@@ -40,7 +40,7 @@ public class ControllerTest {
 		this.cA.cleanUpEnvironment();
 	}
 	
-	/* Init the components and verify that at the beginning, no user are in the connected list of users*/
+	/* Init the components and verify that at the beginning, no user are in the list of connected users*/
 	@Test
 	public void InitModelContainsNoRemoteUserTest(){
 		assertTrue("Before this test, the model should not contains any userRemote", this.cA.isEmptyUserRemoteList());
@@ -49,6 +49,7 @@ public class ControllerTest {
 	/* If we disconnect from the system, it removes all the connected users from the list */
 	@Test
 	public void DisconnectRemoveElements(){
+		this.cA.modelAddContact(userRemote);
 		this.cA.disconnection();
 		assertFalse("All users must be removed", this.cA.findRemoteUserFromModel(userRemote));
 	}
@@ -78,7 +79,7 @@ public class ControllerTest {
 		//timerCheck.setRepeats(false);
 		timerCheck.start();
 	}
-	*/
+	*/ 
 	
 	/* If we receive a Hello message, we add the User in the list of connected users */
 	@Test

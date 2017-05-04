@@ -102,6 +102,7 @@ public class Controller implements Runnable, NewMessageListener, ActionListener 
 		    	  udps.sendBye(modele.getLocalUser().getUsername(), "All");
 		    	  cleanUI();
 		    	  vue.setUIDisconnected();
+		    	  modele.getRemoteUsers().clear();
 		    	  File dir = new File(System.getProperty("user.dir"));
 		    	  for(File file: dir.listFiles()){ 
 		    		    if (!file.isDirectory()) {
