@@ -94,4 +94,8 @@ JUnit tests on the Model and the list of connected users
   - `Description`: When an user received 2 files, the 2 files are both saved without erasing the first received
   - `Autors`: R. Desplats & Y. Mao
   - `Result`: Success!
- 
+
+**Help or Issues**
+Feel free to send us an email at our email adresses if you have questions or if you are facing issues in our project : 
+  - R. Desplats : `desplatsr@gmail.com`
+  - Y. Mao : `yuxiao.mao.1996@gmail.com`
