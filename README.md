@@ -6,7 +6,7 @@
 **Utils**
 - `Java Version`: Java SE 8 [1.8.0_31]
 - `How to compilate and execute`: 
-  - `Compilate yourself` You can compilate the programe using javac 
+  - `Compilate yourself` You can compilate the programe using javac and by including .jar files from the "lib" folder
   - `Using IDE like Eclipse` Include the .jar files included in "lib" folder and launch Window.java
 - `List of implemented functionnalities`:
   - `Communication by sending and receiving text messages` Users can communicate by sending and receiving text messages or files (using UDP). Messages are sent to selected users (one or more) on the graphical interface. 
@@ -94,3 +94,4 @@ JUnit tests on the Model and the list of connected users
   - `Description`: When an user received 2 files, the 2 files are both saved without erasing the first received
   - `Autors`: R. Desplats & Y. Mao
   - `Result`: Success!
+ 
