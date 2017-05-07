@@ -16,7 +16,7 @@
   - `Connected userlist refreshment` If an user is disconnected (for any reason other than pressing the "Disconnect" button), the system is able to detect the disconnection and update the graphical interface. 
   - `Enhanced graphical visuals` The system is provided with a complete GUI interface that is updated wether the user is connected, connecting, disconnected, sending a message, selection a private conversation, etc. 
   
-**List of tests driven on our project**
+## List of tests driven on our project
 JUnit tests on the Model and the list of connected users
 - `Test 1 : InitModelContainsNoRemoteUserTest`
   - `Description`: Init the components and verify that at the beginning, no user are in the list of connected users
@@ -95,7 +95,7 @@ JUnit tests on the Model and the list of connected users
   - `Autors`: R. Desplats & Y. Mao
   - `Result`: Success!
 
-**Help or Issues**
+## Help or Issues
 Feel free to send us an email at our email adresses if you have questions or if you are facing issues in our project : 
   - R. Desplats : `desplatsr@gmail.com`
   - Y. Mao : `yuxiao.mao.1996@gmail.com`
