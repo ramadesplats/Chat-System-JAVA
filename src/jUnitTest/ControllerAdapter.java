@@ -3,7 +3,14 @@ package jUnitTest;
 import gui.Window;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.List;
+
+import javax.swing.DefaultListModel;
 
 import model.Contact;
 import model.Message;
@@ -22,6 +29,7 @@ public class ControllerAdapter implements ControllerAdapterInterface {
 	
 	@Override
 	public void setUserLocal(Contact userLocal) {
+		this.controller.modele.setNameLocalUser(userLocal.getUsername());
 		this.vue.getUsernameContent().setText(userLocal.getUsername());
 	}
 	
@@ -88,6 +96,7 @@ public class ControllerAdapter implements ControllerAdapterInterface {
 	@Override
 	public void modelAddContact(Contact userRemote) {
 		this.controller.modele.addRemoteUser(userRemote);
+		this.vue.getDefaultListModel().addElement(userRemote.getUsername());
 	}
 
 	@Override
@@ -111,6 +120,60 @@ public class ControllerAdapter implements ControllerAdapterInterface {
 	public void receiveMessage(Message message, InetAddress ip) {
 		this.controller.aMessageHasBeenReceived(ip);
 		System.out.println("[CA]"+ip.toString() + " : " + message.toString());
+	}
+	
+	@Override
+	public InetAddress getBroadcastInetAddress(){
+		InetAddress broadcastIp = null;
+		try {
+			broadcastIp = InetAddress.getByName("255.255.255.255");
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		return broadcastIp;
+	}
+	
+	@Override
+	public void userWroteAMessageAndWantToSend(String content, String usernameDest){
+		this.vue.getMessageContent().setText(content);
+		this.vue.getListUser().clearSelection();
+		this.vue.getListUser().setSelectedValue(usernameDest, true);
+		List<String> selectedUsers = this.vue.getListUser().getSelectedValuesList();
+        for (String usrname : selectedUsers) {
+      	  if(usrname.equals("All")){
+      		  this.controller.udps.sendMessageNormalAll(content, this.controller.modele.getLocalUser().getUsername(), "All");
+      	  }
+      	  else{
+      		  Contact tmp = this.controller.modele.checkRemoteUserName(usrname);
+      		  this.controller.udps.sendMessageNormal(tmp.getIp(), content, this.controller.modele.getLocalUser().getUsername(), tmp.getUsername());
+      	  }
+        }
+	}
+	
+	@Override
+	public void userChosedAFileAndWantToSend(File file, String usernameDest){
+		this.vue.getFileChoose().setSelectedFile(file);
+		this.vue.getListUser().clearSelection();
+		this.vue.getListUser().setSelectedValue(usernameDest, true);
+		byte[] bytesArray = new byte[(int) file.length()];
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream(file);
+			fis.read(bytesArray); //read file into bytes[]
+			fis.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		List<String> selectedUsers = vue.getListUser().getSelectedValuesList();
+        for (String usrname : selectedUsers) {
+        	if(usrname.equals("All")){
+        		this.controller.udps.sendMessageFileAll(this.controller.modele.getLocalUser().getUsername(), "All", bytesArray);
+        	}
+        	else{
+        		Contact tmp = this.controller.modele.checkRemoteUserName(usrname);
+        		this.controller.udps.sendMessageFile(tmp.getIp(), this.controller.modele.getLocalUser().getUsername(), tmp.getUsername(),bytesArray);
+        	}
+        }
 	}
 	
 	@Override

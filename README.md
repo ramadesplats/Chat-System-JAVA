@@ -58,3 +58,39 @@ JUnit tests on the Model and the list of connected users
   - `Description`: If someone is in the list and his timer get restarted (by receiving a CheckOK), he isn't removed
   - `Autors`: R. Desplats & Y. Mao
   - `Result`: Not implemented yet
+- `Test 11 : InstanceOfTest`
+  - `Description`: Verify that an instance of the class Message is correctly detected
+  - `Autors`: R. Desplats & Y. Mao
+  - `Result`: Success!
+- `Test 12 : BroadcastHelloTest`
+  - `Description`: When an user connects to the system, he sends a hello message in broadcast mode  
+  - `Autors`: R. Desplats & Y. Mao
+  - `Result`: Success!
+- `Test 13 : BroadcastGoodbyeTest`
+  - `Description`:  When an user disconnects, he have to send a goodbye message in broadcast mode  
+  - `Autors`: R. Desplats & Y. Mao
+  - `Result`: Success!
+- `Test 14 : ReplyHelloOKTest`
+  - `Description`: When an user receives an Hello with a valid username, he automatically replies a hello ok
+  - `Autors`: R. Desplats & Y. Mao
+  - `Result`: Success!
+- `Test 15 : ReplyHelloNOKTest`
+  - `Description`: When user receive an Hello with an username that matches his current username, he automatically replies a hello not ok
+  - `Autors`: R. Desplats & Y. Mao
+  - `Result`: Success!
+- `Test 16 : ReplyCheckOKTest`
+  - `Description`: When an user receives a Check message, he automatically replies a check ok
+  - `Autors`: R. Desplats & Y. Mao
+  - `Result`: Success!
+- `Test 17 : SendMsgTxtTest`
+  - `Description`: When an user wants to send a TxtMessage, a text message with it's content is indeed sent
+  - `Autors`: R. Desplats & Y. Mao
+  - `Result`: Success!
+- `Test 18 : SendMsgFileTest`
+  - `Description`: When a user wants to send an msgFile, a file message with it's content is indeed sent
+  - `Autors`: R. Desplats & Y. Mao
+  - `Result`: Success!
+- `Test 19 : Receive2FilesText`
+  - `Description`: When an user received 2 files, the 2 files are both saved without erasing the first received
+  - `Autors`: R. Desplats & Y. Mao
+  - `Result`: Success!

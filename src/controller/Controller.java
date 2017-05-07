@@ -586,12 +586,17 @@ public class Controller implements Runnable, NewMessageListener, ActionListener 
 				String directory =System.getProperty("user.dir");
 				FileOutputStream fos;
 				try {
-					fos = new FileOutputStream(directory+"/tmp"+this.fileCounter+mimeType);
+					if(mimeType==null){
+						fos = new FileOutputStream(directory+"/tmp"+this.fileCounter);
+					}else{
+						fos = new FileOutputStream(directory+"/tmp"+this.fileCounter+mimeType);
+					}
 					fos.write(bytesArray);
 					fos.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				System.out.println("Saving file tmp" + this.fileCounter + " at "+directory+"/.\n");
 				vue.getMessageDisplay().append("Saving file tmp" + this.fileCounter + " at "+directory+"/.\n" );
 				this.fileCounter++;
 				
